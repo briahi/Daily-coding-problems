@@ -1,4 +1,4 @@
-package daily.codin.problem;
+package daily.coding.problem;
 
 import java.util.HashSet;
 import java.util.Set;
