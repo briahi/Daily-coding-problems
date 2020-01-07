@@ -1,0 +1,47 @@
+
+fun compareStr(secret: String, guess: String): Pair<Int, Int> {
+
+    var wright = 0
+    var wrong = 0
+    var nSec=""
+    var nGuess=""
+    for (i in secret.indices) {
+        if (secret[i] == guess[i]) wright++
+        else{
+            nSec += secret[i]
+            nGuess +=guess[i]
+        }
+
+    }
+
+    wrong = countWrongPositions(nSec, nGuess)
+
+    print(Pair(wright, wrong))
+    return Pair(wright, wrong)
+}
+
+fun countWrongPositions(sec: String, guess: String): Int {
+    var wrong = 0
+    var numberSec=0
+    var numberGuess=0
+    var usedInd= mutableListOf<Char>()
+  for(ch in sec){
+    if(!usedInd.contains(ch)){
+        numberSec=numberCharInStr(sec,ch)
+        numberGuess=numberCharInStr(guess,ch)
+
+        wrong += if (numberSec == numberGuess || numberSec > numberGuess) numberGuess
+        else numberSec
+        usedInd.add(ch)
+    }
+  }
+    return wrong
+}
+
+fun numberCharInStr( str:String, ch:Char):Int{
+    var count=0;
+    for(c in str){
+        if (c==ch) count++
+    }
+    return count
+}
